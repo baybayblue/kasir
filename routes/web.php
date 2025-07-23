@@ -17,6 +17,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\OmsetPenjualanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JenisAkunController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -48,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('omset-penjualan', [OmsetPenjualanController::class, 'index'])->name('omset.index');
         Route::get('omset-penjualan/export-excel', [OmsetPenjualanController::class, 'exportExcel'])->name('omset.export-excel');
         Route::get('/pendapatan/export-excel', [TransaksiController::class, 'exportExcelPendapatan'])->name('pendapatan.export-excel');
+        Route::resource('jenis-akun', JenisAkunController::class);
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {
